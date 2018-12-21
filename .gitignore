@@ -1,2 +1,9 @@
+Release/*
+.settings/*
+*.ino.cpp
+.cproject
+.project
+core/*
+librairies/*
 /Release/
-/sloeber.ino.cpp
+/spec.d
