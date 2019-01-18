@@ -13,6 +13,7 @@
 
 #define Pin_potar_brosses A6
 #define Pin_vitesse_rapide 12
+#define Pin_lame 8
 #define Pin_eau 4
 #define Pin_brosses 7
 #define PIN_JOY_X A4 // X Axis Output
@@ -35,10 +36,9 @@ private:
 
 public:
 	TelecommandeManager();
-
+	int resolution_PWM;
 	int pwm_d;
 	int pwm_g;
-	int resolution_PWM;
 	void init();
 	int vitesse_brosses();
 	void deplacement();

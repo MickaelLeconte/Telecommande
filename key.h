@@ -17,6 +17,7 @@ enum KEY {
 	BROSSES=(byte)0x61,
 	EAU=(byte)0x62,
 	DEPLACEMENT=(byte)0x63,
+	LAME=(byte)0x64,
 
 	SUCCESS=(byte)0x10,
 	ERROR_ACK=(byte)0x20,

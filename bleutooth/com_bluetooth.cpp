@@ -66,12 +66,23 @@ void BluetoothManager::envoie_eau(bool state){
 	send_data();
 }
 
-void BluetoothManager::envoie_vitesse_brosse(int vitesse_brosses){
+void BluetoothManager::envoie_lame(bool state){
 	trame.buffer[0]=(ID_ROBOT); //start
 	trame.buffer[1]=(0x03); //length
-	trame.buffer[2]=(BROSSES); //code
-	trame.buffer[3]=(vitesse_brosses); //code_resp
+	trame.buffer[2]=(LAME); //code
+	trame.buffer[3]=(state); //code_resp
 	trame.buffer[4]=checksum_calculator();
+	trame.size=(int)trame.buffer[1]+2;
+	send_data();
+}
+
+void BluetoothManager::envoie_vitesse_brosse(int vitesse_brosses){
+	trame.buffer[0]=(ID_ROBOT); //start
+	trame.buffer[1]=(0x04); //length
+	trame.buffer[2]=(BROSSES); //code
+	trame.buffer[3]=(byte)(vitesse_brosses>>8);
+	trame.buffer[4]=(byte)(vitesse_brosses & 0x00FF); //code_resp
+	trame.buffer[5]=checksum_calculator();
 	trame.size=(int)trame.buffer[1]+2;
 	send_data();
 }
@@ -89,6 +100,6 @@ void BluetoothManager::envoie_AU(bool state){
 void BluetoothManager::send_data(){
 	for(int i =0; i<trame.size; i++){
 		btSerial.write(trame.buffer[i]);
-		Serial.write(trame.buffer[i]);
+		//Serial.write(trame.buffer[i]);
 	}
 }

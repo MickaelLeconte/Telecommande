@@ -34,6 +34,7 @@ public:
 	void reponse_AU();
 	void envoie_vitesse(int pwm_droite, int pwm_g);
 	void envoie_eau(bool state);
+	void envoie_lame(bool state);
 	void envoie_vitesse_brosse(int vitesse_brosse);
 	void envoie_AU(bool state);
 };

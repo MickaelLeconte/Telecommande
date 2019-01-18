@@ -43,6 +43,7 @@ void loop()
 		btManager.envoie_vitesse(telManager.pwm_d,telManager.pwm_g);
 
 		btManager.envoie_eau(!digitalRead(Pin_eau));
+		btManager.envoie_lame(!digitalRead(Pin_lame));
 		delay(200);
 	}
 

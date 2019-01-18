@@ -9,6 +9,7 @@
 
 
 TelecommandeManager::TelecommandeManager(){
+	resolution_PWM=255;
 	val_joy_x_init=126;
 	val_joy_y_init=126;
 	val_joy_x=0;
@@ -16,7 +17,6 @@ TelecommandeManager::TelecommandeManager(){
 	traction=0;
 	direction=0;
 	rapport=0;
-	resolution_PWM=255;
 	pwm_d=0;
 	pwm_g=0;
 }
@@ -27,7 +27,7 @@ void TelecommandeManager::init(){
 	pinMode(Pin_brosses,INPUT_PULLUP);
 	pinMode(Pin_eau,INPUT_PULLUP);
 	pinMode(Pin_vitesse_rapide,INPUT_PULLUP);
-
+	pinMode(Pin_lame,INPUT_PULLUP);
 	// Déclaration des pins d'acquisition du joystick
 	pinMode(PIN_JOY_X,INPUT);
 	pinMode(PIN_JOY_Y,INPUT);
@@ -40,7 +40,7 @@ void TelecommandeManager::init(){
 }
 
 int TelecommandeManager::vitesse_brosses(){
-	int vitesse=analogRead(Pin_potar_brosses);
+	int vitesse=analogRead(Pin_potar_brosses)/4;
 	return vitesse;
 }
 
@@ -63,6 +63,10 @@ void TelecommandeManager::deplacement(){
 
 	if(pwm_g>=resolution_PWM){pwm_g=resolution_PWM;}
 	else if(pwm_g<=-resolution_PWM){pwm_g=-resolution_PWM;}
+	Serial.print("pwm d :");
+	Serial.println(pwm_d);
+	Serial.print("pwm g :");
+	Serial.println(pwm_g);
 
 }
 
